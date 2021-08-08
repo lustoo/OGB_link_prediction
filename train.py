@@ -52,7 +52,7 @@ def test(model, pos_valid_loader, neg_valid_loader, pos_test_loader, neg_test_lo
 opt = get_opt()
 os.environ["CUDA_VISIBLE_DEVICES"] = str(opt.gpu)
 
-model = MLP(input_size=119 if opt.smi == 'all' else 117, class_num=2)
+model = MLP(input_size=119 if opt.sim == 'all' else 117, class_num=2)
 model = model.cuda()
 
 model.train()
@@ -79,7 +79,7 @@ neg_test_loader = DataLoader(dataset=neg_test_set, batch_size=opt.batch_size, nu
 
 best_val_scores = np.zeros((opt.runs,))
 best_test_scores = np.zeros((opt.runs,))
-idx = range(119)
+idx = list(range(119))
 if opt.sim == 'cn':
     del idx[-2], idx[-1]
 elif opt.sim == 'ra':
@@ -109,7 +109,7 @@ for run in range(opt.runs):
         model.train()
         for _, batch in enumerate(train_loader):
             edges, labels = batch
-            edges = edges.cuda()[:, :58 * 2 + 1]
+            edges = edges.cuda()
             labels = labels.cuda().squeeze()
             out = model(edges[:, idx])
             loss = lossf(out, labels)
