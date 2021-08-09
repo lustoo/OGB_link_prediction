@@ -1,6 +1,6 @@
 # ogbl-ppa
 
-We combine node labels with scores given by local similarity measures and use a simple MLP to gain a good performance on the link prediction task.
+We combine node labels with scores calculated by local similarity measures and use a simple MLP for the link prediction task which can obtain good performance.
 
 ## Requirements
 
@@ -39,7 +39,7 @@ We conduct the experiments for 10 times with the random seed 0~9 and results are
 
 
 
-We introduce an additional anchor sampling strategy and modify the aggregation stage of GraphSAGE. Results show that our strategy and modification surpass existing methods by a large extent.
+We use multiple anchor sets selected from random sampling to encode distance information for edges on graph. We also modify the aggregation stage of GraphSAGE to incorporate edge information.
 
 ## Train and Predict
 
@@ -53,7 +53,6 @@ python link_pred_ddi_graphsage_edge.py --node_emb 512 --hidden_channels 512 --nu
 
 |            Model             |   Test Hits@20    |    Val Hits@20    |
 | :--------------------------: | :---------------: | :---------------: |
-|          GraphSAGE           |   0.7985±0.0494   |   0.8152±0.0310   |
-|   GraphSAGE+edge attr(k=1)   |   0.8633±0.0313   |   0.7916±0.0324   |
-| **GraphSAGE+edge attr(k=3)** | **0.8781±0.0474** | **0.8044±0.0404** |
-|   GraphSAGE+edge attr(k=5)   |   0.8527±0.0247   |   0.7839±0.0278   |
+|   GraphSAGE+Edge Attr(k=1)   |   0.8633±0.0313   |   0.7916±0.0324   |
+| **GraphSAGE+Edge Attr(k=3)** | **0.8781±0.0474** | **0.8044±0.0404** |
+|   GraphSAGE+Edge Attr(k=5)   |   0.8527±0.0247   |   0.7839±0.0278   |
