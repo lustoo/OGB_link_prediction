@@ -50,16 +50,19 @@ def test(model, pos_valid_loader, neg_valid_loader, pos_test_loader, neg_test_lo
 
 
 opt = get_opt()
+print(opt)
 os.environ["CUDA_VISIBLE_DEVICES"] = str(opt.gpu)
 
 model = MLP(input_size=119 if opt.sim == 'all' else 117, class_num=2)
+print('Parameters {}'.format(sum(p.numel() for p in model.parameters())))
+
 model = model.cuda()
 
 model.train()
 lossf = nn.CrossEntropyLoss()
 train_set = TrainSet()
 train_loader = DataLoader(dataset=train_set, batch_size=opt.batch_size, num_workers=8, pin_memory=True,
-                          shuffle=True)  # 512 0
+                          shuffle=True)
 
 pos_valid_set = TestSet(pn='pos', phase='valid')
 pos_valid_loader = DataLoader(dataset=pos_valid_set, batch_size=opt.batch_size, num_workers=8, pin_memory=True,
@@ -88,7 +91,7 @@ elif opt.sim == 'aa':
     del idx[-2], idx[-2]
 
 for run in range(opt.runs):
-    print('********run {}*********'.format(run))
+    print('**********run {}*********'.format(run))
     # hit100
     np.random.seed(run)
     random.seed(run)
@@ -126,7 +129,7 @@ for run in range(opt.runs):
         epoch_time = time.time() - epoch_start_time
         print("--epoch {} , loss {:.4f}, acc {:.4f}, time {:.0f}s".format(epoch, epoch_loss.avg, epoch_acc.avg,
                                                                           epoch_time))
-        valid_score, test_score = test(model, pos_valid_loader, neg_valid_loader, pos_test_loader, neg_test_loader,idx)
+        valid_score, test_score = test(model, pos_valid_loader, neg_valid_loader, pos_test_loader, neg_test_loader, idx)
         print('---------------------------epoch {} '.format(epoch),
               f'--Test: {100 * test_score:.2f}%, '
               f'--Val: {100 * valid_score:.2f}%')

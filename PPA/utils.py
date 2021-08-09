@@ -46,7 +46,7 @@ def get_opt():
     parser.add_argument('--batch_size', type=int, default=4096)
     parser.add_argument('--runs', type=int, default=10)
     parser.add_argument('--epochs', type=int, default=20)
-    parser.add_argument('--gpu', type=int, default=0)
+    parser.add_argument('--gpu', type=int, default=2)
     parser.add_argument('--lr', type=float, default=0.005)
     parser.add_argument('--sim', type=str, default='all', choices=['all', 'ra', 'aa', 'cn'])
     opt = parser.parse_args()
