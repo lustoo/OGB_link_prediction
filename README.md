@@ -26,7 +26,7 @@ python train.py --sim all
 
 ## Results
 
-We conduct the experiments for 10 times with the random seed 0~9 and results are below:
+We conduct the experiments for 10 times with the random seed 0~9 and results are listed below:
 
 |    Model     | Test Hits@100 | Val Hits@100  |
 | :----------: | :-----------: | :-----------: |
@@ -43,17 +43,17 @@ We introduce an additional anchor sampling strategy and modify the aggregation s
 
 ## Train and Predict
 
+To get the best performance, run:
+
 ```python
 python link_pred_ddi_graphsage_edge.py --node_emb 512 --hidden_channels 512 --num_samples 3
 ```
 
 ## Results
 
-|       Model       | Test Hits@20  |  Val Hits@20  |
-| :---------------: | :-----------: | :-----------: |
-|     baseline      | 0.7985±0.0494 | 0.8152±0.0310 |
-| DE with edge(k=1) | 0.8633±0.0313 | 0.7916±0.0324 |
-| DE with edge(k=2) |               |               |
-| DE with edge(k=3) | 0.8781±0.0474 | 0.8044±0.0404 |
-| DE with edge(k=4) |               |               |
-| DE with edge(k=5) | 0.8527±0.0247 | 0.7839±0.0278 |
+|          Model           | Test Hits@20  |  Val Hits@20  |
+| :----------------------: | :-----------: | :-----------: |
+|        GraphSAGE         | 0.7985±0.0494 | 0.8152±0.0310 |
+| GraphSAGE+edge attr(k=1) | 0.8633±0.0313 | 0.7916±0.0324 |
+| GraphSAGE+edge attr(k=3) | 0.8781±0.0474 | 0.8044±0.0404 |
+| GraphSAGE+edge attr(k=5) | 0.8527±0.0247 | 0.7839±0.0278 |
