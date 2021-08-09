@@ -28,12 +28,12 @@ python train.py --sim all
 
 We conduct the experiments for 10 times with the random seed 0~9 and results are listed below:
 
-|    Model     | Test Hits@100 | Val Hits@100  |
-| :----------: | :-----------: | :-----------: |
-| MLP+RA&CN&AA | 0.5062±0.0035 | 0.4906±0.0029 |
-|    MLP+CN    | 0.3064±0.0116 | 0.3161±0.0070 |
-|    MLP+RA    | 0.4896±0.0048 | 0.4794±0.0029 |
-|    MLP+AA    | 0.3459±0.0033 | 0.3454±0.0029 |
+|      Model       |   Test Hits@100   |   Val Hits@100    |
+| :--------------: | :---------------: | :---------------: |
+|      MLP+CN      |   0.3064±0.0116   |   0.3161±0.0070   |
+|      MLP+RA      |   0.4896±0.0048   |   0.4794±0.0029   |
+|      MLP+AA      |   0.3459±0.0033   |   0.3454±0.0029   |
+| **MLP+RA&CN&AA** | **0.5062±0.0035** | **0.4906±0.0029** |
 
 # ogbl-ddi
 
@@ -51,9 +51,9 @@ python link_pred_ddi_graphsage_edge.py --node_emb 512 --hidden_channels 512 --nu
 
 ## Results
 
-|          Model           | Test Hits@20  |  Val Hits@20  |
-| :----------------------: | :-----------: | :-----------: |
-|        GraphSAGE         | 0.7985±0.0494 | 0.8152±0.0310 |
-| GraphSAGE+edge attr(k=1) | 0.8633±0.0313 | 0.7916±0.0324 |
-| GraphSAGE+edge attr(k=3) | 0.8781±0.0474 | 0.8044±0.0404 |
-| GraphSAGE+edge attr(k=5) | 0.8527±0.0247 | 0.7839±0.0278 |
+|            Model             |   Test Hits@20    |    Val Hits@20    |
+| :--------------------------: | :---------------: | :---------------: |
+|          GraphSAGE           |   0.7985±0.0494   |   0.8152±0.0310   |
+|   GraphSAGE+edge attr(k=1)   |   0.8633±0.0313   |   0.7916±0.0324   |
+| **GraphSAGE+edge attr(k=3)** | **0.8781±0.0474** | **0.8044±0.0404** |
+|   GraphSAGE+edge attr(k=5)   |   0.8527±0.0247   |   0.7839±0.0278   |
